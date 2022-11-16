@@ -28,7 +28,7 @@ export class ComponentUISideBar extends PureComponent {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link collapsed" to="/products">
+                        <Link className="nav-link collapsed" to="/orders">
                             <i className="bi bi-box-seam"></i>
                             <span>Đơn hàng</span>
                         </Link>
