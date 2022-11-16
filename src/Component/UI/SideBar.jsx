@@ -195,6 +195,13 @@ export class ComponentUISideBar extends PureComponent {
                     <li className="nav-heading">Pages</li>
 
                     <li className="nav-item">
+                        <Link className="nav-link collapsed" to="/products">
+                            <i className="bi bi-person"></i>
+                            <span>Products</span>
+                        </Link>
+                    </li>
+
+                    <li className="nav-item">
                         <Link className="nav-link collapsed" href="users-profile.html">
                             <i className="bi bi-person"></i>
                             <span>Profile</span>

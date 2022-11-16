@@ -103,7 +103,7 @@
 
         "PRODUCT_GET_LIST"  : "/admin/product/list",
 
-        "PRODUCT_GET_DETAILS"  : "/admin/product/details/:id",
+        "PRODUCT_GET_DETAILS"  : "/admin/product/details",
 
         "PRODUCT_ADD"  : "/admin/product/add",
 
