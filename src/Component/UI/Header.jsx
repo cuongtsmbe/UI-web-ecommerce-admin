@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
+import avatarTmp from '../../utils/img/profile-img.jpg'
 
 export class ComponentUIHeader extends PureComponent {
     handleLogout=()=>{
@@ -188,7 +189,7 @@ export class ComponentUIHeader extends PureComponent {
                         <li className="nav-item dropdown pe-3">
 
                             <Link className="nav-link nav-profile d-flex align-items-center pe-0" to="#" data-bs-toggle="dropdown">
-                                <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
+                                <img src={avatarTmp} alt="Profile" className="rounded-circle" />
                                 <span className="d-none d-md-block dropdown-toggle ps-2">{localStorage.getItem('username')}</span>
                             </Link>
                             {/* <!-- End Profile Iamge Icon --> */}

@@ -61,9 +61,19 @@
 
         "CATEGORY_ADD"  : "/admin/category/add",
 
-        "CATEGORY_EDIT"  : "/admin/category/edit/:id",
+        "CATEGORY_EDIT"  : "/admin/category/edit",
 
-        "CATEGORY_DELETE"  : "/admin/category/delete/:id",
+        "CATEGORY_DELETE"  : "/admin/category/delete",
+
+        "THUONGHIEU_GET_LIST" : "/admin/thuonghieu/list",
+
+        "THUONGHIEU_GET_ALL"    : "/admin/thuonghieu/listAll",
+
+        "THUONGHIEU_ADD"    : "/admin/thuonghieu/add",
+
+        "THUONGHIEU_EDIT"   : "/admin/thuonghieu/edit",
+
+        "THUONGHIEU_DELETE" : "/admin/thuonghieu/delete",
 
         "CUSTOMER_GET_LIST"  : "/admin/customer/list",
 

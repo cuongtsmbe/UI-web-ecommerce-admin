@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import ScreenDashboard from './Dashboard'
 import ScreenLogin from './Login';
 import ScreenProductDetail from './ProductDetail';
+import ScreenProductEdit from './ProductEdit';
 import ScreenProducts from './Products';
 import ScreenRegister from './Register'
 
@@ -17,6 +18,7 @@ class ScreenRoot extends Component {
         <Route path='/login' element={<ScreenLogin />} />
         <Route path='/products' element={<ScreenProducts />} />
         <Route path='/products/:idProduct' element={<ScreenProductDetail />} />
+        <Route path='/products/:idProduct/edit' element={<ScreenProductEdit />} />
         
     </Routes> 
     )

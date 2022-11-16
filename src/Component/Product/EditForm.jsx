@@ -1,15 +1,37 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 import productApi from '../../api/productApi';
-import { withParams } from '../../utils/Params/componentWithParams';
 import { formatVND } from '../../utils/currencyVND';
 import categoryApi from '../../api/categoryApi';
 import branchApi from '../../api/branchApi';
 
-export class ComponentProductDetail extends PureComponent {
+export class ComponentProductEditForm extends PureComponent {
     state = {
+        ten_sp: undefined,
+        don_gia: undefined,
+        hinh_anh: undefined,
+        noi_dung: undefined,
+        manHinh: undefined,
+        id_thuong_hieu:undefined,
+        cpu: undefined,
+        ram: undefined,
+        card: undefined,
+        oCung: undefined,
+        pin: undefined,
+        id_the_loai: undefined,
+        id_nha_cc: undefined,
+        so_luong: undefined,
+        sl_da_ban: undefined,
+        trangthai: undefined,
         product: {},
         categories: [],
-        branchs: []
+        branchs: [],
+        manHinh: ['13.3', '13.4', '13.5', '14', '15.6', '16', '16.1', '17', '17.3'],
+        cpu: ['Intel Core i9', 'Intel Core i7', 'Intel Core i5', 'Intel Core i3', 'Intel Celeron/Pentium', 'AMD'],
+        ram: ['32 GB', '16 GB', '8 GB', '4 GB'],
+        card: ['GeForce GTX', 'GeForce RTX', 'GeForce MX', 'GeForce Quadro', 'Radeon RX'],
+        oCung: ['SSD 2 TB', 'SSD 1 TB', 'SSD 512 GB', 'SSD 256 GB', 'HDD 1 TB trở lên'],
+        doPhanGiai: ['4K', '2K', 'Retina', 'Full HD', 'HD'],
+        tanSo: ['120 Hz', '144 Hz', '165 Hz', '240 Hz', '300 Hz', '360 Hz']
     }
     async componentDidMount() {
         await this.getCategory();
@@ -17,6 +39,20 @@ export class ComponentProductDetail extends PureComponent {
         const reponse = await productApi.getById(this.props.id);
         const product = reponse.data[0];
         this.setState({ product })
+        this.setState({ten_sp:product.ten_sp})
+        this.setState({don_gia:product.don_gia})
+        this.setState({hinh_anh:product.hinh_anh})
+        this.setState({noi_dung:product.noi_dung})
+        this.setState({id_thuong_hieu:product.id_thuong_hieu})
+        this.setState({manHinh:product.manHinh})
+        this.setState({cpu:product.cpu})
+        this.setState({ram:product.ram})
+        this.setState({card:product.card})
+        this.setState({oCung:product.oCung})
+        this.setState({pin:product.pin})
+        this.setState({id_the_loai:product.id_the_loai})
+        this.setState({id_nha_cc:product.id_nha_cc})
+        this.setState({so_luong:product.so_luong})
     }
     async getCategory() {
         const response = await categoryApi.get();
@@ -29,9 +65,9 @@ export class ComponentProductDetail extends PureComponent {
         this.setState({ branchs });
     }
 
-    handleSubmitEdit=e=>{
+    handleSubmitEdit = e => {
         e.preventDefault();
-        window.location.href=`/products/60/edit`
+        // window.location.href = `/products/60/edit`
     }
     render() {
         return (
@@ -44,56 +80,56 @@ export class ComponentProductDetail extends PureComponent {
                         <form className="row g-3">
                             <div className="col-md-12">
                                 <label for="inputName5" className="form-label">Hình ảnh</label>
-                                <input type="text" className="form-control" id="inputName5" value={this.state.product.hinh_anh} hidden />
-                                <img src={this.state.product.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img>
+                                <input type="text" className="form-control" id="inputName5" name='hinh_anh' value={this.state.hinh_anh}  />
+                                <img src={this.state.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img>
                             </div>
                             <div className="col-md-12">
                                 <label for="inputName5" className="form-label">Tên sản phẩm</label>
-                                <input type="text" className="form-control" id="inputName5" value={this.state.product.ten_sp} />
+                                <input type="text" className="form-control" id="inputName5" name='ten_sp' value={this.state.ten_sp} />
                             </div>
                             <div className="col-md-12">
                                 <label for="inputName5" className="form-label">Đơn giá</label>
-                                <input type="text" className="form-control" id="inputName5" value={formatVND(Number(this.state.product.don_gia))} />
+                                <input type="text" className="form-control" id="inputName5" name='don_gia' value={formatVND(Number(this.state.don_gia))} />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputEmail5" className="form-label">Thương hiệu</label>
-                                <input type="text" className="form-control" id="inputEmail5" value={this.state.product.id_thuong_hieu} />
+                                <input type="text" className="form-control" id="inputEmail5" name='id_thuong_hieu' value={this.state.id_thuong_hieu} />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputPassword5" className="form-label">Thể loại</label>
-                                <input type="text" className="form-control" id="inputPassword5"
-                                    value={this.state.categories.map(category => 
-                                         (category.id === this.state.product.id_the_loai) ? category.ten_tl : undefined
+                                <input type="text" className="form-control" id="inputPassword5" name='id_the_loai'
+                                    value={this.state.categories.map(category =>
+                                        (category.id === this.state.id_the_loai) ? category.ten_tl : undefined
                                     )}
                                 />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputEmail5" className="form-label">Nhà cung cấp</label>
-                                <input type="text" className="form-control" id="inputEmail5" value={this.state.product.id_nha_cc} />
+                                <input type="text" className="form-control" id="inputEmail5" name='id_nha_cc' value={this.state.id_nha_cc} />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputEmail5" className="form-label">Số lượng</label>
-                                <input type="text" className="form-control" id="inputEmail5" value={this.state.product.so_luong} />
+                                <input type="text" className="form-control" id="inputEmail5" name='so_luong' value={this.state.so_luong} />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputEmail5" className="form-label">Màn hình</label>
-                                <input type="text" className="form-control" id="inputEmail5" value={this.state.product.manHinh} />
+                                <input type="text" className="form-control" id="inputEmail5" name='manHinh' value={this.state.manHinh} />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputPassword5" className="form-label">PIN</label>
-                                <input type="text" className="form-control" id="inputPassword5" value={this.state.product.pin} />
+                                <input type="text" className="form-control" id="inputPassword5" name='pin' value={this.state.pin} />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputEmail5" className="form-label">RAM</label>
-                                <input type="text" className="form-control" id="inputEmail5" value={this.state.product.ram} />
+                                <input type="text" className="form-control" id="inputEmail5" name='ram' value={this.state.ram} />
                             </div>
                             <div className="col-md-6">
                                 <label for="inputPassword5" className="form-label">Ổ Cứng</label>
-                                <input type="text" className="form-control" id="inputPassword5" value={this.state.product.oCung} />
+                                <input type="text" className="form-control" id="inputPassword5" name='oCung' value={this.state.oCung} />
                             </div>
                             <div className="col-md-12">
                                 <label for="inputPassword5" className="form-label">Nội dung</label>
-                                <textarea className="form-control" style={{ height: "100px" }} value={this.state.product.noi_dung}></textarea>
+                                <textarea className="form-control" style={{ height: "100px" }} name='noi_dung' value={this.state.noi_dung}></textarea>
                             </div>
                             {/* <div className="col-12">
                                 <label for="inputAddress5" className="form-label">Address</label>
@@ -131,7 +167,7 @@ export class ComponentProductDetail extends PureComponent {
                                 <button type="reset" className="btn btn-secondary">Reset</button>
                             </div> */}
                             <div className="text-center">
-                                <button className="btn btn-warning" onClick={this.handleSubmitEdit}>Chỉnh sửa</button>
+                                <button className="btn btn-primary" onClick={this.handleSubmitEdit}>Cập Nhật</button>
                                 {/* <button type="reset" className="btn btn-secondary">Reset</button> */}
                             </div>
                         </form>
@@ -141,8 +177,8 @@ export class ComponentProductDetail extends PureComponent {
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">Hình ảnh</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.hinh_anh} hidden />
-                                    <img src={this.state.product.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img>
+                                    <input type="text" className="form-control" value={this.state.hinh_anh} hidden />
+                                    <img src={this.state.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img>
                                 </div>
                             </div> */}
 
@@ -160,55 +196,55 @@ export class ComponentProductDetail extends PureComponent {
                         {/* <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">Tên sản phẩm</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.ten_sp} />
+                                    <input type="text" className="form-control" value={this.state.ten_sp} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">Đơn giá</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={formatVND(Number(this.state.product.don_gia))} />
+                                    <input type="text" className="form-control" value={formatVND(Number(this.state.don_gia))} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">Thương hiệu</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.id_thuong_hieu} />
+                                    <input type="text" className="form-control" value={this.state.id_thuong_hieu} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">Thể loại</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.id_the_loai} />
+                                    <input type="text" className="form-control" value={this.state.id_the_loai} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputPassword" className="col-sm-2 col-form-label">Nội dung</label>
                                 <div className="col-sm-10">
-                                    <textarea className="form-control" style={{ height: "100px" }} value={this.state.product.noi_dung}></textarea>
+                                    <textarea className="form-control" style={{ height: "100px" }} value={this.state.noi_dung}></textarea>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">Màn hình</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.manHinh} />
+                                    <input type="text" className="form-control" value={this.state.manHinh} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">PIN</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.pin} />
+                                    <input type="text" className="form-control" value={this.state.pin} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">RAM</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.ram} />
+                                    <input type="text" className="form-control" value={this.state.ram} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="inputText" className="col-sm-2 col-form-label">Ổ Cứng</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.product.oCung} />
+                                    <input type="text" className="form-control" value={this.state.oCung} />
                                 </div>
                             </div> */}
 
@@ -346,4 +382,4 @@ export class ComponentProductDetail extends PureComponent {
     }
 }
 
-export default withParams(ComponentProductDetail)
+export default ComponentProductEditForm
