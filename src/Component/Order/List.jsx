@@ -18,6 +18,8 @@ export class ComponentOrderList extends PureComponent {
             page:1,
             sort:-1,// không sort
         },
+        countOrdersNoLimit:undefined,
+        TotalPage:0
        
     }
 
@@ -43,7 +45,11 @@ export class ComponentOrderList extends PureComponent {
         try {
             var  response = await orderApi.get({query: this.state.filter});
             var  orders = response.data;
-            this.setState({orders});
+            this.setState({
+                orders,
+                countOrdersNoLimit:response.countOrdersNoLimit.count,
+                TotalPage:response.TotalPage
+              });
         } catch (error) {
             console.log('Fail to get list order : '+error);
         }
@@ -76,7 +82,7 @@ export class ComponentOrderList extends PureComponent {
                 <div className="col">
                     <NativePickers NameTitle="End Time" stateName="enddate" parentCallback={this.handleSetTime} />
                 </div>
-                
+
                 <SearchInput handleSearchInput={this.handleSearchInput} />
                
             </div>
