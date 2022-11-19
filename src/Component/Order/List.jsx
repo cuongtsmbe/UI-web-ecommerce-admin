@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
 import orderApi from '../../api/orderApi';
 import ComponentOrderItem from './Item';
-import { Link } from 'react-router-dom';
+import SortDropDown from './SortDropDown';
 import NativePickers from './Date_time_picker';
+import StatusDropDown from './StatusDropDown';
+import _ from 'lodash';
+import SearchInput from './SearchInput';
 
 export class ComponentOrderList extends PureComponent {
     state = {
@@ -12,13 +15,27 @@ export class ComponentOrderList extends PureComponent {
             startdate: undefined,
             enddate: undefined,
             trangthai : -1, // -1 get all
-            page:1
-        }
+            page:1,
+            sort:-1,// không sort
+        },
        
     }
 
+    //select time 
     handleSetTime = (childName,value) =>{
       this.setState({filter:{...this.state.filter,[childName]: value}});
+    }
+    //dropdown status
+    handleChangeSelectedStatus=(value)=>{
+      this.setState({filter:{...this.state.filter,trangthai: value}});
+    }
+    //dropdown sort
+    handleChangeSelectedSort=(value)=>{
+      this.setState({filter:{...this.state.filter,sort: value}});
+    }
+    //search input order by customer name
+    handleSearchInput=(e)=>{
+      this.setState({filter:{...this.state.filter,tenkh:e.target.value}});
     }
 
 
@@ -33,8 +50,11 @@ export class ComponentOrderList extends PureComponent {
     }
     
     //khi update state xong thi request lại
-    async componentDidUpdate(){
+    async componentDidUpdate(prevProps, prevState){
+      //2 object khác nhau thì true
+      if(!_.isEqual(this.state.filter, prevState.filter)) {
         await this.getListOrders();
+      }
     }
 
     //chỉ chạy 1 lần
@@ -46,18 +66,7 @@ export class ComponentOrderList extends PureComponent {
         <div className="col-12">
         <div className="card recent-sales overflow-auto">
         
-        {/* filter dropdown */}
         <div className="filter m-4">
-            <Link className="icon" to="#" data-bs-toggle="dropdown"><i className="bi bi-three-dots"></i></Link>
-            <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-              <li className="dropdown-header text-start">
-                <h6>Trang thai</h6>
-              </li>
-
-              <li className="dropdown-item">1</li>
-              <li className="dropdown-item">2</li>
-              <li className="dropdown-item">3</li>
-            </ul>
 
             <div className="row justify-content-start col-12">
             
@@ -67,23 +76,19 @@ export class ComponentOrderList extends PureComponent {
                 <div className="col">
                     <NativePickers NameTitle="End Time" stateName="enddate" parentCallback={this.handleSetTime} />
                 </div>
-                <div className="col align-self-stretch d-flex">
-                    <div className="input-group">
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="Tim theo ten khach hang ..." 
-                            aria-label="Tim theo ten khach hang ..." 
-                            name='tenkh'
-                            onChange={(e)=>this.setState({filter:{...this.state.filter,tenkh:e.target.value}})}
-
-                        />
-                    </div>
-                </div>
+                
+                <SearchInput handleSearchInput={this.handleSearchInput} />
                
             </div>
             <br/>
-            {/* <button type="button" className="btn btn-light border border-primary">Tìm đơn hàng </button> */}
+            <div className="row col-12">
+              <div className="col-6">
+                <SortDropDown valueSelected={this.state.filter.sort} handleChangeSelectedSort={(e)=>this.handleChangeSelectedSort(e.target.value)}/>
+              </div>
+              <div className="col-6">
+                <StatusDropDown valueSelected={this.state.filter.trangthai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
+              </div>
+            </div>
         </div> 
   
           <div className="card-body">
