@@ -19,8 +19,9 @@ class ScreenRoot extends Component {
         <Route path='/products' element={<ScreenProducts />} />
         <Route path='/products/:idProduct' element={<ScreenProductDetail />} />
         <Route path='/products/:idProduct/edit' element={<ScreenProductEdit />} />
-        <Route path='/orders' element={<ScreenOrders />} />
-        <Route path='/orders/customer/:idCustomer' element={<ScreenOrders />} />
+        <Route path='/orders' element={<ScreenOrders namePage="orderShow"/>} />
+        <Route path='/orders/customer/:idCustomer' element={<ScreenOrders namePage="orderCustomer"/>} />
+        <Route path='/order/details/:idHoadon' element={<ScreenOrders namePage="detailOrder"/>} />
         
     </Routes> 
     )

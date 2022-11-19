@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import orderApi from '../../api/orderApi';
-import ComponentOrderItem from './Item';
+import ComponentOrderItem from './ItemOrder';
 import SortDropDown from './SortDropDown';
 import NativePickers from './Date_time_picker';
 import StatusDropDown from './StatusDropDown';
@@ -92,7 +92,7 @@ export class ComponentOrderList extends PureComponent {
                 <SortDropDown valueSelected={this.state.filter.sort} handleChangeSelectedSort={(e)=>this.handleChangeSelectedSort(e.target.value)}/>
               </div>
               <div className="col-6">
-                <StatusDropDown valueSelected={this.state.filter.trangthai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
+                <StatusDropDown nameCall="OrdersList" valueSelected={this.state.filter.trangthai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
               </div>
             </div>
         </div> 

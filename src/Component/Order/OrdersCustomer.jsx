@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import orderApi from '../../api/orderApi';
-import ComponentOrderItem from './Item';
+import ComponentOrderItem from './ItemOrder';
 import SortDropDown from './SortDropDown';
 import NativePickers from './Date_time_picker';
 import StatusDropDown from './StatusDropDown';
@@ -18,7 +18,7 @@ export class ComponentOrderCustomerList extends PureComponent {
             page:1,
             sort:-1,// không sort
         },
-        countOrdersNoLimit:undefined,
+        countOrdersNoLimit:0,
         TotalPage:0,
         TotalMonneyInOrders:0
        
@@ -61,7 +61,7 @@ export class ComponentOrderCustomerList extends PureComponent {
             var  response = await orderApi.GetTotalMonneyOrderByIDCustomer({query: this.state.filter});
             var  total = response.data;
             this.setState({
-                TotalMonneyInOrders:total[0].TotalItemsOrdered==null?0:total[0].TotalItemsOrdered
+                TotalMonneyInOrders:total[0].TotalItemsOrdered===null?0:total[0].TotalItemsOrdered
               });
         } catch (error) {
             console.log('Fail to get total monney order : '+error);
@@ -79,7 +79,6 @@ export class ComponentOrderCustomerList extends PureComponent {
 
     //chỉ chạy 1 lần
     async componentDidMount(){
-        console.log("ComponentOrderCustomerList");
         await this.getListOrders();
         await this.getTotalMonneyOrders();
     }
@@ -92,7 +91,7 @@ export class ComponentOrderCustomerList extends PureComponent {
 
             <div className="row justify-content-start col-12">
                 <div className="col-3 me-5 ms-3 d-flex align-items-center ps-5 badge bg-primary">
-                    <b> {this.state.TotalMonneyInOrders!=0 ? `Tổng chi: ${formatVND(this.state.TotalMonneyInOrders)}`:""}
+                    <b> {this.state.TotalMonneyInOrders!==0 ? `Tổng chi: ${formatVND(this.state.TotalMonneyInOrders)}`:""}
                     </b>
                 </div>
                 <div className="col">
@@ -109,7 +108,7 @@ export class ComponentOrderCustomerList extends PureComponent {
                 <SortDropDown valueSelected={this.state.filter.sort} handleChangeSelectedSort={(e)=>this.handleChangeSelectedSort(e.target.value)}/>
               </div>
               <div className="col-6">
-                <StatusDropDown valueSelected={this.state.filter.trangthai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
+                <StatusDropDown nameCall="OrdersCustomer" valueSelected={this.state.filter.trangthai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
               </div>
             </div>
         </div> 
