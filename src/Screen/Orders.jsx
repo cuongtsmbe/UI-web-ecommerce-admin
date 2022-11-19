@@ -6,7 +6,6 @@ import ComponentOrderCustomerList from '../Component/Order/OrdersCustomer'
 
 export class ScreenOrder extends PureComponent {
     render() {
-        console.log(this.props.params.idCustomer);
         return (
             <main id="main" className="main">
 

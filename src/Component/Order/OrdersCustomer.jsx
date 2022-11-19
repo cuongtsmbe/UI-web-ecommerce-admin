@@ -5,7 +5,7 @@ import SortDropDown from './SortDropDown';
 import NativePickers from './Date_time_picker';
 import StatusDropDown from './StatusDropDown';
 import _ from 'lodash';
-import SearchInput from './SearchInput';
+import {formatVND} from '../../utils/currencyVND';
 
 export class ComponentOrderCustomerList extends PureComponent {
     state = {
@@ -19,7 +19,8 @@ export class ComponentOrderCustomerList extends PureComponent {
             sort:-1,// không sort
         },
         countOrdersNoLimit:undefined,
-        TotalPage:0
+        TotalPage:0,
+        TotalMonneyInOrders:0
        
     }
 
@@ -54,12 +55,25 @@ export class ComponentOrderCustomerList extends PureComponent {
             console.log('Fail to get list order : '+error);
         }
     }
+    //get total monney of customer
+    async getTotalMonneyOrders(){
+        try {
+            var  response = await orderApi.GetTotalMonneyOrderByIDCustomer({query: this.state.filter});
+            var  total = response.data;
+            this.setState({
+                TotalMonneyInOrders:total[0].TotalItemsOrdered==null?0:total[0].TotalItemsOrdered
+              });
+        } catch (error) {
+            console.log('Fail to get total monney order : '+error);
+        }
+    }
     
     //khi update state xong thi request lại
     async componentDidUpdate(prevProps, prevState){
       //2 object khác nhau thì true
       if(!_.isEqual(this.state.filter, prevState.filter)) {
         await this.getListOrders();
+        await this.getTotalMonneyOrders();
       }
     }
 
@@ -67,6 +81,7 @@ export class ComponentOrderCustomerList extends PureComponent {
     async componentDidMount(){
         console.log("ComponentOrderCustomerList");
         await this.getListOrders();
+        await this.getTotalMonneyOrders();
     }
   render() {
     return (
@@ -76,7 +91,10 @@ export class ComponentOrderCustomerList extends PureComponent {
         <div className="filter m-4">
 
             <div className="row justify-content-start col-12">
-            <div className="col-4"></div>
+                <div className="col-3 me-5 ms-3 d-flex align-items-center ps-5 badge bg-primary">
+                    <b> {this.state.TotalMonneyInOrders!=0 ? `Tổng chi: ${formatVND(this.state.TotalMonneyInOrders)}`:""}
+                    </b>
+                </div>
                 <div className="col">
                     <NativePickers NameTitle="Start Time" stateName="startdate" parentCallback={this.handleSetTime}/>
                 </div>  

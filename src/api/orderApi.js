@@ -14,6 +14,11 @@ class OrderApi {
         const url = `/admin/order/customer/${condition.query.idCustomer}`;
         return axiosAdmin.get(url,{params:condition.query});
     }
+    // lấy tổng tiền hóa đơn của id customer
+    GetTotalMonneyOrderByIDCustomer=(condition)=>{
+        const url = `/admin/order/customer/totalMonney/${condition.query.idCustomer}`;
+        return axiosAdmin.get(url,{params:condition.query});
+    }
 
 }
 const orderApi = new OrderApi();
