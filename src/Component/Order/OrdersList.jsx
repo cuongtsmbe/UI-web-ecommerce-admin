@@ -43,7 +43,7 @@ export class ComponentOrderList extends PureComponent {
 
     async getListOrders(){
         try {
-            var  response = await orderApi.get({query: this.state.filter});
+            var  response = await orderApi.GetOrder({query: this.state.filter});
             var  orders = response.data;
             this.setState({
                 orders,
@@ -98,7 +98,7 @@ export class ComponentOrderList extends PureComponent {
         </div> 
   
           <div className="card-body">
-            <h5 className="card-title">Tất cả hóa đơn</h5>
+            <h5 className="card-title"> Danh sách hóa đơn</h5>
 
             <table className="table table-borderless datatable">
               <thead>
@@ -108,12 +108,13 @@ export class ComponentOrderList extends PureComponent {
                   <th scope="col">Mã khách hàng</th>
                   <th scope="col">Tổng Tiền</th>
                   <th scope="col">Tình Trạng</th>
+                  <th scope="col">Ngày Tạo</th>
                 </tr>
               </thead>
               <tbody>
               { 
                     this.state.orders.length!==0 ?
-                    this.state.orders.map(orderItem=> <ComponentOrderItem key={orderItem.Ma_don_hang} orderItem={orderItem}/>) :  <tr className="row m-3"><td>Không có đơn hàng nào.</td></tr>
+                    this.state.orders.map(orderItem=> <ComponentOrderItem key={orderItem.Ma_don_hang} nameComponentCall="ComponentOrderList" orderItem={orderItem}/>) :  <tr className="row m-3"><td>Không có đơn hàng nào.</td></tr>
                     
               }
               </tbody>

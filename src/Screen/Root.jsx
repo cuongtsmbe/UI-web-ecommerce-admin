@@ -7,7 +7,6 @@ import ScreenProductDetail from './ProductDetail';
 import ScreenProductEdit from './ProductEdit';
 import ScreenProducts from './Products';
 import ScreenRegister from './Register'
-
 class ScreenRoot extends Component {  
 
   render() {
@@ -21,6 +20,7 @@ class ScreenRoot extends Component {
         <Route path='/products/:idProduct' element={<ScreenProductDetail />} />
         <Route path='/products/:idProduct/edit' element={<ScreenProductEdit />} />
         <Route path='/orders' element={<ScreenOrders />} />
+        <Route path='/orders/customer/:idCustomer' element={<ScreenOrders />} />
         
     </Routes> 
     )

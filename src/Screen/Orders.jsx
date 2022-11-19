@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
-import ComponentOrderList from '../Component/Order/List'
+import ComponentOrderList from '../Component/Order/OrdersList'
+import { withParams } from '../utils/Params/componentWithParams'
+import ComponentOrderCustomerList from '../Component/Order/OrdersCustomer'
 
 export class ScreenOrder extends PureComponent {
     render() {
+        console.log(this.props.params.idCustomer);
         return (
             <main id="main" className="main">
 
@@ -13,7 +16,9 @@ export class ScreenOrder extends PureComponent {
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to="/dashboard">Home</Link></li>
                             <li className="breadcrumb-item">Pages</li>
-                            <li className="breadcrumb-item active">Quản lý đơn hàng </li>
+                            <li className="breadcrumb-item active">Order</li>
+                            {this.props.params.idCustomer?<li className="breadcrumb-item active">Customer</li>:""}
+                            {this.props.params.idCustomer?<li className="breadcrumb-item active">{this.props.params.idCustomer}</li>:""}
                         </ol>
                     </nav>
                 </div>
@@ -21,7 +26,7 @@ export class ScreenOrder extends PureComponent {
 
                 <section className="section">
                     <div className="row">
-                      <ComponentOrderList/>
+                      {this.props.params.idCustomer?<ComponentOrderCustomerList idCustomer={this.props.params.idCustomer} />:<ComponentOrderList/>}
                     </div>
                 </section>
 
@@ -30,5 +35,4 @@ export class ScreenOrder extends PureComponent {
         )
     }
 }
-
-export default ScreenOrder
+export default withParams(ScreenOrder)
