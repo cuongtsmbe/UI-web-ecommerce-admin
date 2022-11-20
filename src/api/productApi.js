@@ -10,6 +10,10 @@ class ProductApi {
         const url = `${LINK.ADMIN.PRODUCT_GET_DETAILS}/${id}`;
         return axiosAdmin.get(url);
     }
+    edit=(id, params)=>{
+        const url = `${LINK.ADMIN.PRODUCT_EDIT}/${id}`;
+        return axiosAdmin.put(url,params);
+    }
 }
 const productApi = new ProductApi();
 

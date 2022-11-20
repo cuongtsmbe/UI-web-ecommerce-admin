@@ -20,8 +20,7 @@ class ScreenRoot extends Component {
         <Route path='/products' element={<ScreenProducts />} />
         <Route path='/products/:idProduct' element={<ScreenProductDetail />} />
         <Route path='/products/:idProduct/edit' element={<ScreenProductEdit />} />
-        <Route path='/orders' element={<ScreenOrders />} />
-        
+        <Route path='/orders' element={<ScreenOrders />} />        
     </Routes> 
     )
   }

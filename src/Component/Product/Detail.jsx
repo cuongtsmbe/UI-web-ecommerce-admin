@@ -13,7 +13,7 @@ export class ComponentProductDetail extends PureComponent {
     }
     async componentDidMount() {
         await this.getCategory();
-        // await this.getBranch();
+        await this.getBranch();
         const reponse = await productApi.getById(this.props.id);
         const product = reponse.data[0];
         this.setState({ product })
@@ -31,7 +31,7 @@ export class ComponentProductDetail extends PureComponent {
 
     handleSubmitEdit=e=>{
         e.preventDefault();
-        window.location.href=`/products/60/edit`
+        window.location.href=`/products/${this.props.id}/edit`
     }
     render() {
         return (

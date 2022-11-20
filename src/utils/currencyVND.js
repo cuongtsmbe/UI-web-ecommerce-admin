@@ -1,6 +1,9 @@
 export function formatVND(number) {
-    return number.toLocaleString('vi-VN', {
+    var result=undefined;
+    if(Number.isInteger(number))
+    result = number.toLocaleString('vi-VN', {
         style: 'currency',
         currency: 'VND'
-    })
+    })   
+    return result;
 }
