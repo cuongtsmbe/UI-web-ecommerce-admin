@@ -10,7 +10,7 @@ export default class NativePickers extends PureComponent {
         id="datetime-local"
         label={this.props.NameTitle}
         type="datetime-local"
-        defaultValue="2022-01-01T10:30"
+        defaultValue="0000-00-00T00:00"
         sx={{ width: 250 }}
         InputLabelProps={{
           shrink: true,
