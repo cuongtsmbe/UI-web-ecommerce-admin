@@ -4,13 +4,14 @@ import ComponentOrderList from '../Component/Order/OrdersList'
 import { withParams } from '../utils/Params/componentWithParams'
 import ComponentOrderCustomerList from '../Component/Order/OrdersCustomer'
 import ComponentOrderDetails from '../Component/Order/OrderDetails'
+
 export class ScreenOrder extends PureComponent {
     render() {
         return (
             <main id="main" className="main">
 
                 <div className="pagetitle">
-                    <h1>QUẢN LÝ ĐƠN HÀNG</h1>
+                    <h1>ĐƠN HÀNG</h1>
                     <nav>
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to="/dashboard">Home</Link></li>
@@ -32,7 +33,7 @@ export class ScreenOrder extends PureComponent {
 
                       {/* <!-- show component by url --> */}
                       {this.props.namePage==="orderCustomer"?<ComponentOrderCustomerList idCustomer={this.props.params.idCustomer} />:""}
-                      {this.props.namePage==="orderShow" ?  <ComponentOrderList/> :""}
+                      {this.props.namePage==="orderShow" ?   <ComponentOrderList/> :""}
                       {this.props.namePage==="detailOrder" ? <ComponentOrderDetails idHoadon={this.props.params.idHoadon} />:"" }
                     </div>
                 </section>

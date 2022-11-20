@@ -11,7 +11,7 @@ class ScreenRoot extends Component {
 
   render() {
     return (
-        <Routes>
+      <Routes>
         <Route path='/' element={localStorage.getItem('isAuthenticated')==='true'? <Navigate to='/dashboard'/> : <ScreenLogin />} />
         <Route path='/dashboard' element={<ScreenDashboard />} />
         <Route path='/register' element={<ScreenRegister />} />
@@ -21,9 +21,8 @@ class ScreenRoot extends Component {
         <Route path='/products/:idProduct/edit' element={<ScreenProductEdit />} />
         <Route path='/orders' element={<ScreenOrders namePage="orderShow"/>} />
         <Route path='/orders/customer/:idCustomer' element={<ScreenOrders namePage="orderCustomer"/>} />
-        <Route path='/order/details/:idHoadon' element={<ScreenOrders namePage="detailOrder"/>} />
-        
-    </Routes> 
+        <Route path='/orders/details/:idHoadon' element={<ScreenOrders namePage="detailOrder"/>} />
+      </Routes> 
     )
   }
 }
