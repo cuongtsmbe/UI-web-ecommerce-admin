@@ -28,7 +28,7 @@ export class ComponentProductEditForm extends PureComponent {
         branchs: [],
         supliers: [],
         sizes: ['13.3', '13.4', '13.5', '14', '15.6', '16', '16.1', '17', '17.3'],
-        cpus: ['Intel Core i9', 'Intel Core i7', 'Intel Core i5', 'Intel Core i3', 'Intel Celeron/Pentium', 'AMD'],
+        cpus: ['Intel Core i9', 'Intel Core i7', 'Intel Core i5', 'Intel Core i3', 'Intel Celeron/Pentium', 'AMD','Apple M1 Pro, 200GB/s memory bandwidth','Apple M2, 100GB/s'],
         rams: ['RAM 32 GB', 'RAM 16 GB', 'RAM 8 GB', 'RAM 4 GB'],
         cards: ['GeForce GTX', 'GeForce RTX', 'GeForce MX', 'GeForce Quadro', 'Radeon RX'],
         hdds: ['SSD 2 TB', 'SSD 1 TB', 'SSD 512 GB', 'SSD 256 GB', 'HDD 1 TB trở lên'],
@@ -112,8 +112,7 @@ export class ComponentProductEditForm extends PureComponent {
             [e.target.name]: e.target.value
         })
     }
-    handleChangeScreen = e => {
-        const name = e.target.name;
+    handleChangeScreen = e => {        
         const value = e.target.value;
         var screen = '';
         const sizes = this.state.sizes;
@@ -161,6 +160,10 @@ export class ComponentProductEditForm extends PureComponent {
                                 <label for="inputName5" className="form-label">Hình ảnh</label>
                                 <input type="text" className="form-control" id="inputName5" name='hinh_anh' value={this.state.hinh_anh} onChange={this.handleChangeInput} required />
                                 <img src={this.state.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img>
+                            </div>
+                            <div className="col-md-12">
+                                <label for="inputNumber" className="col-sm-2 col-form-label">File Upload</label>                                
+                                    <input className="form-control" type="file" id="formFile" />                                
                             </div>
                             <div className="col-md-12">
                                 <label for="inputName5" className="form-label">Tên sản phẩm</label>
@@ -256,15 +259,26 @@ export class ComponentProductEditForm extends PureComponent {
                                     })}
                                 </select>
                             </div>
-                            <div className="col-md-12">
+                            <div className="col-md-6">
                                 <label for="inputEmail5" className="form-label">Màn hình</label>
                                 <input readOnly type="text" className="form-control" id="inputManHinh" name='manHinh' value={this.state.manHinh} required />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
                                 <label for="inputPassword5" className="form-label">PIN</label>
                                 <input type="text" className="form-control" id="inputPin" name='pin' value={this.state.pin} onChange={this.handleChangeInput} required />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
+                                <label for="inputState" className="form-label">CPU</label>
+                                <select id="inputState" className="form-select" name='cpu' onChange={this.handleChangeInput}>
+                                    <option value='-1'>Chọn CPU...</option>
+                                    {this.state.cpus.map((cpu) => {
+                                        if (this.state.cpu === cpu)
+                                            return <option selected value={cpu}>{cpu}</option>
+                                        return <option value={cpu}>{cpu}</option>
+                                    })}
+                                </select>
+                            </div>
+                            <div className="col-md-3">
                                 <label for="inputState" className="form-label">RAM</label>
                                 <select id="inputState" className="form-select" name='ram' onChange={this.handleChangeInput}>
                                     <option value='-1'>Chọn Ram...</option>
@@ -279,7 +293,7 @@ export class ComponentProductEditForm extends PureComponent {
                                 <label for="inputEmail5" className="form-label">RAM</label>
                                 <input type="text" className="form-control" id="inputRam" name='ram' value={this.state.ram} onChange={this.handleChangeInput} />
                             </div> */}
-                            <div className="col-md-4">
+                            <div className="col-md-3">
                                 <label for="inputState" className="form-label">Ổ Cứng</label>
                                 <select id="inputState" className="form-select" name='hdd' onChange={this.handleChangeInput}>
                                     <option value='-1'>Chọn Ổ cứng...</option>

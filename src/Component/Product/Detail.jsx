@@ -84,13 +84,17 @@ export class ComponentProductDetail extends PureComponent {
                                 <input type="text" className="form-control" id="inputPassword5" value={this.state.product.pin} />
                             </div>
                             <div className="col-md-6">
+                                <label for="inputPassword5" className="form-label">CPU</label>
+                                <input type="text" className="form-control" id="inputPassword5" value={this.state.product.cpu} />
+                            </div>
+                            <div className="col-md-3">
                                 <label for="inputEmail5" className="form-label">RAM</label>
                                 <input type="text" className="form-control" id="inputEmail5" value={this.state.product.ram} />
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-3">
                                 <label for="inputPassword5" className="form-label">Ổ Cứng</label>
                                 <input type="text" className="form-control" id="inputPassword5" value={this.state.product.oCung} />
-                            </div>
+                            </div>                           
                             <div className="col-md-12">
                                 <label for="inputPassword5" className="form-label">Nội dung</label>
                                 <textarea className="form-control" style={{ height: "100px" }} value={this.state.product.noi_dung}></textarea>

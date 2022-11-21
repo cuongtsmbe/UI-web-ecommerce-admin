@@ -119,7 +119,7 @@
 
         "PRODUCT_EDIT"  : "/admin/product/edit",
 
-        "PRODUCT_DELETE"  : "/admin/product/delete/:id",
+        "PRODUCT_DELETE"  : "/admin/product/delete",
 
         "STAFF_GET_LIST"  : "/admin/staff/list",
 
