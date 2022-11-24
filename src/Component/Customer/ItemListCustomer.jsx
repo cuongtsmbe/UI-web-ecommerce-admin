@@ -15,6 +15,7 @@ export class ComponentCustomerItem extends PureComponent {
               <td >{CustomerItem.email}</td>
               <td >{CustomerItem.phone}</td>
               <td >{CustomerItem.dia_chi}</td>
+              <td ><Link to={`/customer/edit/${CustomerItem.Ma_kh}`}><button type="button" class="btn btn-warning">Edit</button></Link></td>
         </tr>
       );
     

@@ -93,6 +93,7 @@ export class ComponentOrderList extends PureComponent {
                   <th scope="col">Email</th>
                   <th scope="col">Phone</th>
                   <th scope="col">Địa chỉ</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>

@@ -11,12 +11,19 @@ class CustomerApi {
 
     // them khach hang
     insertCustomer=(condition)=>{
-        console.log("add customer");
-        console.log(condition);
         const url = LINK.ADMIN.CUSTOMER_ADD;
         return axiosAdmin.post(url,condition.query);
     }
 
+    GetDetailCustomer=(condition) =>{
+        const url = `/admin/customer/${condition.id}`;
+        return axiosAdmin.get(url,condition);
+    }
+
+    updateCustomer=(value,id) =>{
+        const url = `/admin/customer/edit/${id}`;
+        return axiosAdmin.put(url,value.query);
+    }
 }
 const customerApi = new CustomerApi();
 
