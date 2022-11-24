@@ -117,9 +117,9 @@
 
         "PRODUCT_ADD"  : "/admin/product/add",
 
-        "PRODUCT_EDIT"  : "/admin/product/edit/:id",
+        "PRODUCT_EDIT"  : "/admin/product/edit",
 
-        "PRODUCT_DELETE"  : "/admin/product/delete/:id",
+        "PRODUCT_DELETE"  : "/admin/product/delete",
 
         "STAFF_GET_LIST"  : "/admin/staff/list",
 
@@ -135,9 +135,9 @@
 
         "SUPPLIER_ADD"  : "/admin/supplier/add",
         
-        "SUPPLIER_EDIT"  : "/admin/supplier/edit/:id",
+        "SUPPLIER_EDIT"  : "/admin/supplier/edit",
 
-        "SUPPLIER_DELETE"  : "/admin/supplier/delete/:id"
+        "SUPPLIER_DELETE"  : "/admin/supplier/delete"
         
     }
     
