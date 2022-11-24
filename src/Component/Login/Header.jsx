@@ -11,9 +11,9 @@ export default class Header extends Component {
     return (
       <>
         {(authenticated) ? (
-          <button onClick={this._handleLogoutClick}>Logout</button>
+          <button onClick={this._handleLogoutClick} type="button" class="btn btn-outline-danger">Logout</button>
         ) : (
-          <button onClick={this._handleSignInClick}>Login</button>
+          <button onClick={this._handleSignInClick}type="button" class="btn btn-outline-primary" >Login</button>
         )}
       </>
     );

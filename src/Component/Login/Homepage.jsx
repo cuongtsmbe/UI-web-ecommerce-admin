@@ -15,8 +15,15 @@ export default class HomePage extends Component {
          
         var  response = await AuthApi.loginGoogle();
         console.log("login google");
+        var user=response.user;
         if(response.status===200){
-          this.setState({user:response.user,authenticated:true,error:false})
+          //save token 
+          this.setState({user:user,authenticated:true,error:false})
+          localStorage.setItem('token',user.AccessToken);
+          localStorage.setItem('refreshToken',user.refreshToken);
+          localStorage.setItem('isAuthenticated',true);
+          localStorage.setItem('username',user.name);
+          window.location.href='/dashboard';
         }else if(response.status===500){
           this.setState({error: "Please login ."})
         }
@@ -36,13 +43,7 @@ export default class HomePage extends Component {
           handleLogout={this.handleLogout}
         />
         <div>
-          {!authenticated ? (
-            <h1>Welcome!</h1>
-          ) : (
-            <div>
-              <h1>You have login succcessfully!</h1>
-            </div>
-          )}
+         
         </div>
       </div>
     );
