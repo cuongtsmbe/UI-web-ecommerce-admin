@@ -32,6 +32,7 @@ class ScreenRoot extends Component {
         <Route path='/customer/create' element={<ScreenCustomer namePage="customerCreate"/>} />
         <Route path='/customer/edit/:idCustomer' element={<ScreenCustomer namePage="customerUpdate"/>} />
         <Route path='/staff' element={<ScreenStaff namePage="staffShow"/>} />
+        <Route path='/staff/edit/:idStaff' element={<ScreenStaff namePage="staffUpdate"/>} />
       </Routes> 
     )
   }

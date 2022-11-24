@@ -1,7 +1,7 @@
 import axiosAdmin from "./axiosAdmin";
 import LINK from "../utils/link.json";
 
-class CustomerApi {
+class StaffApi {
 
     // lấy danh sách nhan vien
     GetListStaffs=(condition)=>{
@@ -15,16 +15,16 @@ class CustomerApi {
     //     return axiosAdmin.post(url,condition.query);
     // }
 
-    // GetDetailCustomer=(condition) =>{
-    //     const url = `/admin/customer/${condition.id}`;
-    //     return axiosAdmin.get(url,condition);
-    // }
+    GetDetailStaff=(condition) =>{
+        const url = `/admin/staff/${condition.id}`;
+        return axiosAdmin.get(url,condition);
+    }
 
-    // updateCustomer=(value,id) =>{
-    //     const url = `/admin/customer/edit/${id}`;
-    //     return axiosAdmin.put(url,value.query);
-    // }
+    updateStaff=(value,id) =>{
+        const url = `/admin/staff/edit/${id}`;
+        return axiosAdmin.put(url,value.query);
+    }
 }
-const customerApi = new CustomerApi();
+const staffApi = new StaffApi();
 
-export default customerApi;
+export default staffApi;

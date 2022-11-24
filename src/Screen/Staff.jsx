@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { withParams } from '../utils/Params/componentWithParams'
 import ComponentStaffList from '../Component/Staff/StaffsList'
 // import ComponentStaffCreate from '../Component/Staff/StaffCreate'
-// import ComponentStaffUpdate from '../Component/Staff/StaffUpdate'
+import ComponentStaffUpdate from '../Component/Staff/StaffUpdate'
 export class ScreenStaff extends PureComponent {
     render() {
         return (
@@ -29,8 +29,8 @@ export class ScreenStaff extends PureComponent {
                     
                       {/* <!-- show component by url --> */}
                       {this.props.namePage==="staffShow" ?   <ComponentStaffList/> :""}
-                      {/* {this.props.namePage==="staffCreate"?  <ComponentStaffCreate/>:""}
-                      {this.props.namePage==="staffUpdate"?  <ComponentStaffUpdate idStaff={this.props.params.idStaff}/>:""} */}
+                      {/* {this.props.namePage==="staffCreate"?  <ComponentStaffCreate/>:""} */}
+                      {this.props.namePage==="staffUpdate"?  <ComponentStaffUpdate idStaff={this.props.params.idStaff}/>:""}
                     </div>
                 </section>
 
