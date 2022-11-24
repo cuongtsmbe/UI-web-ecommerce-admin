@@ -10,6 +10,7 @@ import ScreenProductEdit from './ProductEdit';
 import ScreenProducts from './Products';
 import ScreenRegister from './Register'
 import ScreenCustomer from './Customer'
+
 class ScreenRoot extends Component {  
 
   render() {
@@ -28,6 +29,7 @@ class ScreenRoot extends Component {
         <Route path='/orders/customer/:idCustomer' element={<ScreenOrders namePage="orderCustomer"/>} />
         <Route path='/orders/details/:idHoadon' element={<ScreenOrders namePage="detailOrder"/>} />
         <Route path='/customer' element={<ScreenCustomer namePage="customerShow"/>} />
+        <Route path='/customer/create' element={<ScreenCustomer namePage="customerCreate"/>} />
       </Routes> 
     )
   }

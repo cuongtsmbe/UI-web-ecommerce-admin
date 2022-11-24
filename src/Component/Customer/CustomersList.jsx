@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import customerApi from '../../api/customerApi';
 import _ from 'lodash';
+import { Link } from 'react-router-dom'
 import SearchInput from '../UI/SearchInput';
-import ComponentCustomerItem from './ItemCustomer'
+import ComponentCustomerItem from './ItemListCustomer'
 export class ComponentOrderList extends PureComponent {
     state = {
         customerls:[],
@@ -72,7 +73,7 @@ export class ComponentOrderList extends PureComponent {
                         Số lượng user :{this.state.countNoLimit} 
                 </div>
                
-                <button type="button" class="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary" style={{ height: '40px',width:'210px'}}>Thêm khách hàng</button>
+                <Link class="col-3 me-5 ms-3 d-flex align-items-center ps-5" to="/customer/create"><button type="button" class="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'210px'}}>Thêm khách hàng</button></Link>
 
                
             </div>
