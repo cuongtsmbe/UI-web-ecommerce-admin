@@ -4,6 +4,7 @@ import ScreenDashboard from './Dashboard'
 import ScreenLogin from './Login';
 import ScreenLoginGoogle from './LoginGoogle'
 import ScreenOrders from './Orders';
+import { ScreenProductCreate } from './ProductCreate';
 import ScreenProductDetail from './ProductDetail';
 import ScreenProductEdit from './ProductEdit';
 import ScreenProducts from './Products';
@@ -22,6 +23,7 @@ class ScreenRoot extends Component {
         <Route path='/products' element={<ScreenProducts />} />
         <Route path='/products/:idProduct' element={<ScreenProductDetail />} />
         <Route path='/products/:idProduct/edit' element={<ScreenProductEdit />} />
+        <Route path='/products/create' element={<ScreenProductCreate />} />
         <Route path='/orders' element={<ScreenOrders namePage="orderShow"/>} />
         <Route path='/orders/customer/:idCustomer' element={<ScreenOrders namePage="orderCustomer"/>} />
         <Route path='/orders/details/:idHoadon' element={<ScreenOrders namePage="detailOrder"/>} />

@@ -46,7 +46,7 @@ axiosAdmin.interceptors.response.use(async (response) => {
     const refreshResponse = await authApi.refreshToken({ user: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken') }) });
     // Save access token
     localStorage.setItem('token', refreshResponse.AccessToken);
-    err.response.config.headers["Authorization"] = "Bearer " + err.response.AccessToken;
+    err.response.config.headers["Authorization"] = "Bearer " + refreshResponse.AccessToken;
     return axiosAdmin(err.response.config)
   }
   return Promise.reject(err);
