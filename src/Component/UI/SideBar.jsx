@@ -40,6 +40,12 @@ export class ComponentUISideBar extends PureComponent {
                             <span>Customer</span>
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link collapsed" to='/staff'>
+                            <i className="bi bi-person"></i>
+                            <span>Nhân viên</span>
+                        </Link>
+                    </li>
                     {/* <!-- End Profile Page Nav --> */}
 
                     {/* <li className="nav-item">
