@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ScreenDashboard from './Dashboard'
 import ScreenLogin from './Login';
+import ScreenLoginGoogle from './LoginGoogle'
 import ScreenOrders from './Orders';
 import ScreenProductDetail from './ProductDetail';
 import ScreenProductEdit from './ProductEdit';
 import ScreenProducts from './Products';
 import ScreenRegister from './Register'
+
 class ScreenRoot extends Component {  
 
   render() {
@@ -16,6 +18,7 @@ class ScreenRoot extends Component {
         <Route path='/dashboard' element={<ScreenDashboard />} />
         <Route path='/register' element={<ScreenRegister />} />
         <Route path='/login' element={<ScreenLogin />} />
+        <Route path='/login/google' element={<ScreenLoginGoogle />} />
         <Route path='/products' element={<ScreenProducts />} />
         <Route path='/products/:idProduct' element={<ScreenProductDetail />} />
         <Route path='/products/:idProduct/edit' element={<ScreenProductEdit />} />
