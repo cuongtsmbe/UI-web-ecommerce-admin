@@ -11,7 +11,7 @@ const axiosAdmin = axios.create({
   origin: true,
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json; multipart/form-data',
   },
   withCredentials: true,
   paramsSerializer: params => queryString.stringify(params),
