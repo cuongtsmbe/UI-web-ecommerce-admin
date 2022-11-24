@@ -4,6 +4,7 @@ import { formatVND } from '../../utils/currencyVND';
 import categoryApi from '../../api/categoryApi';
 import branchApi from '../../api/branchApi';
 import suplierApi from '../../api/suplierApi';
+import imageApi from '../../api/imageApi';
 
 export class ComponentProductCreateFrom extends PureComponent {
     state = {
@@ -36,7 +37,9 @@ export class ComponentProductCreateFrom extends PureComponent {
         refreshRates: ['120Hz', '144Hz', '165Hz', '240Hz', '300Hz', '360Hz'],
         size: undefined,
         resolution: undefined,
-        refreshRate: undefined
+        refreshRate: undefined,
+        images:undefined,
+        preview:undefined,
     }
     async componentDidMount() {
         await this.getCategory();
@@ -101,6 +104,7 @@ export class ComponentProductCreateFrom extends PureComponent {
 
         try {
             await productApi.create(params);
+            await imageApi.add(60, this.state.images);
         } catch (error) {
 
         }
@@ -147,6 +151,22 @@ export class ComponentProductCreateFrom extends PureComponent {
         }
 
     }
+    handleSelectFile = e =>{        
+        if(!e.target.files || e.target.files.length ===0){
+            this.setState({images:undefined, preview:undefined});
+            return;
+        }
+        const numberOfFile = e.target.files.length;
+        const files = e.target.files;
+        var images = new FormData();
+        var listFileName = [];
+        for(var i=0;i<numberOfFile;i++){
+            const fileName = URL.createObjectURL(files[i]);
+            listFileName.push(fileName);
+            images.append('ListPhoto',files[i],fileName);            
+        }
+        this.setState({images:images, preview:listFileName});
+    }
     render() {
         return (
             <div className="col-lg-12">
@@ -155,13 +175,14 @@ export class ComponentProductCreateFrom extends PureComponent {
                         <h5 className="card-title">Thong tin san pham</h5>
                         <form className="row g-3">
                             <div className="col-md-12">
-                                <label for="inputName5" className="form-label">Hình ảnh</label>
-                                <input type="text" className="form-control" id="inputName5" name='hinh_anh' value={this.state.hinh_anh} onChange={this.handleChangeInput} required />
+                                <label for="inputName5" className="form-label">Hình ảnh từ internet</label>
+                                <input type="text" className="form-control" id="inputName5" name='hinh_anh' value={this.state.hinh_anh} onChange={this.handleChangeInput} required placeholder='Vd: https://cdn.tgdd.vn/Products/Images/44/253581/TimerThumb/macbook-pro-14-m1-pro-2021-8-core-cpu.jpg' />
                                 {this.state.hinh_anh?<img src={this.state.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img>:<></>}
                             </div>
                             <div className="col-md-12">
-                                <label for="inputNumber" className="col-sm-2 col-form-label">File Upload</label>
-                                <input className="form-control" type="file" id="formFile" />
+                                <label for="inputNumber" className=" col-form-label">Hình ảnh</label>
+                                <input className="form-control" type="file" id="formFile" name='uploadFile' onChange={this.handleSelectFile} multiple/>
+                                {this.state.preview && this.state.preview.map(url =><img src={url} alt='Hinh anh san pham' style={{ height: '100px',padding:'5px' }}></img>) }
                             </div>
                             <div className="col-md-12">
                                 <label for="inputName5" className="form-label">Tên sản phẩm</label>
