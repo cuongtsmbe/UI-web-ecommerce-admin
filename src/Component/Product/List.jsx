@@ -82,17 +82,17 @@ export class ComponentProductList extends PureComponent {
             
             <div className='dataTable-top'>
               <div className="dataTable-dropdown">
-                <label>Trang
-                  <select className="dataTable-selector" onChange={this.handlePaging}>
+                <label><div class="badge bg-primary text-wrap" >Trang hiện tại: </div>
+                  <select className="btn-group btn  dropdown-toggle dataTable-selector  m-2" onChange={this.handlePaging}>
                     {Array.from({ length: this.state.totalPage }, (v, i) => i + 1).map((page) => {
-                      if (page === this.state.currentPage) return (<option value={page} selected>{ page }</option>)
+                      if (page === this.state.currentPage) return (<option value={page} selected >{ page }</option>)
                       else return (<option value={page}>{ page }</option>)
                     })}
                   </select>
                 </label>
               </div>
               <div className="dataTable-search">
-                <input className="dataTable-input" placeholder="Search..." type="text" name='search' value={this.state.search} onChange={this.handleSearch} />
+                <input className="dataTable-input form-control" placeholder="Search..." type="text" name='search' value={this.state.search} onChange={this.handleSearch} />
               </div>
 
             </div>
@@ -112,41 +112,6 @@ export class ComponentProductList extends PureComponent {
                 {
                   this.state.products.map(product => <ComponentProductItem product={product} handleDeleteProduct={(id) => this.handleDeleteProduct(id)} />)
                 }
-                {/* <tr>
-                  <th scope="row"><Link to="#">#2457</Link></th>
-                  <td><Link to="#"><img src="assets/img/product-1.jpg" alt="" style={{ height: '50px' }} /></Link></td>
-                  <td><Link to="#" className="text-primary">At praesentium minu</Link></td>
-                  <td>$64</td>
-                  <td><span className="badge bg-success">Approved</span></td>
-                </tr>
-                <tr>
-                  <th scope="row"><Link to="#">#2147</Link></th>
-                  <td>Bridie Kessler</td>
-                  <td><Link to="#" className="text-primary">Blanditiis dolor omnis similique</Link></td>
-                  <td>$47</td>
-                  <td><span className="badge bg-warning">Pending</span></td>
-                </tr>
-                <tr>
-                  <th scope="row"><Link to="#">#2049</Link></th>
-                  <td>Ashleigh Langosh</td>
-                  <td><Link to="#" className="text-primary">At recusandae consectetur</Link></td>
-                  <td>$147</td>
-                  <td><span className="badge bg-success">Approved</span></td>
-                </tr>
-                <tr>
-                  <th scope="row"><Link to="#">#2644</Link></th>
-                  <td>Angus Grady</td>
-                  <td><Link to="#" className="text-primar">Ut voluptatem id earum et</Link></td>
-                  <td>$67</td>
-                  <td><span className="badge bg-danger">Rejected</span></td>
-                </tr>
-                <tr>
-                  <th scope="row"><Link to="#">#2644</Link></th>
-                  <td>Raheem Lehner</td>
-                  <td><Link to="#" className="text-primary">Sunt similique distinctio</Link></td>
-                  <td>$165</td>
-                  <td><span className="badge bg-success">Approved</span></td>
-                </tr> */}
               </tbody>
             </table>
 
