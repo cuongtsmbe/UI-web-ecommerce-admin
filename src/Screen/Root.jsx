@@ -11,6 +11,7 @@ import ScreenProducts from './Products';
 import ScreenRegister from './Register'
 import ScreenCustomer from './Customer'
 import ScreenStaff from './Staff'
+import ScreenSupplier from './Suplier'
 class ScreenRoot extends Component {  
 
   render() {
@@ -34,6 +35,7 @@ class ScreenRoot extends Component {
         <Route path='/staff' element={<ScreenStaff namePage="staffShow"/>} />
         <Route path='/staff/edit/:idStaff' element={<ScreenStaff namePage="staffUpdate"/>} />
         <Route path='/staff/create' element={<ScreenStaff namePage="staffCreate"/>} />
+        <Route path='/supplier' element={<ScreenSupplier namePage="SupplierShow"/>} />
       </Routes> 
     )
   }
