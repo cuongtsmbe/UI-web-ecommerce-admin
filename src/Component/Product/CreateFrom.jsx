@@ -5,6 +5,7 @@ import categoryApi from '../../api/categoryApi';
 import branchApi from '../../api/branchApi';
 import suplierApi from '../../api/suplierApi';
 import imageApi from '../../api/imageApi';
+import swal from 'sweetalert';
 
 export class ComponentProductCreateFrom extends PureComponent {
     state = {
@@ -29,7 +30,7 @@ export class ComponentProductCreateFrom extends PureComponent {
         branchs: [],
         supliers: [],
         sizes: ['13.3', '13.4', '13.5', '14', '15.6', '16', '16.1', '17', '17.3'],
-        cpus: ['Intel Core i9', 'Intel Core i7', 'Intel Core i5', 'Intel Core i3', 'Intel Celeron/Pentium', 'AMD','Apple M1 Pro, 200GB/s memory bandwidth', 'Apple M2, 100GB/s'],
+        cpus: ['Intel Core i9', 'Intel Core i7', 'Intel Core i5', 'Intel Core i3', 'Intel Celeron/Pentium', 'AMD', 'Apple M1 Pro, 200GB/s memory bandwidth', 'Apple M2, 100GB/s'],
         rams: ['RAM 32 GB', 'RAM 16 GB', 'RAM 8 GB', 'RAM 4 GB'],
         cards: ['GeForce GTX', 'GeForce RTX', 'GeForce MX', 'GeForce Quadro', 'Radeon RX'],
         hdds: ['SSD 2 TB', 'SSD 1 TB', 'SSD 512 GB', 'SSD 256 GB', 'HDD 1 TB trở lên'],
@@ -38,8 +39,8 @@ export class ComponentProductCreateFrom extends PureComponent {
         size: undefined,
         resolution: undefined,
         refreshRate: undefined,
-        images:undefined,
-        preview:undefined,
+        images: undefined,
+        preview: undefined,
     }
     async componentDidMount() {
         await this.getCategory();
@@ -82,7 +83,7 @@ export class ComponentProductCreateFrom extends PureComponent {
     }
 
     handleCreate = async e => {
-        // e.preventDefault();
+        e.preventDefault();
         var params = {
             Ten_san_pham: this.state.ten_sp,
             Don_gia: this.state.don_gia,
@@ -98,15 +99,19 @@ export class ComponentProductCreateFrom extends PureComponent {
             Id_the_loai: this.state.id_the_loai,
             Id_nha_cung_cap: this.state.id_nha_cc,
             So_luong: this.state.so_luong,
-            So_luong_da_ban: this.state.sl_da_ban,
-            Status: this.state.trangthai
-        }
-
+            So_luong_da_ban: 0,
+            Status: 1
+        }  
+        await imageApi.add(70, this.state.images);      
         try {
-            await productApi.create(params);
-            await imageApi.add(60, this.state.images);
+            const response = await productApi.create(params);
+            const id = response.id || undefined;
+            if (id) {                
+                swal('Thêm thành công!');
+                
+            }
         } catch (error) {
-
+            console.log('Fail to Post')
         }
         // window.location.href = `/products/60/edit`
     }
@@ -116,7 +121,7 @@ export class ComponentProductCreateFrom extends PureComponent {
             [e.target.name]: e.target.value
         })
     }
-    handleChangeScreen = e => {        
+    handleChangeScreen = e => {
         const value = e.target.value;
         var screen = '';
         const sizes = this.state.sizes;
@@ -151,21 +156,21 @@ export class ComponentProductCreateFrom extends PureComponent {
         }
 
     }
-    handleSelectFile = e =>{        
-        if(!e.target.files || e.target.files.length ===0){
-            this.setState({images:undefined, preview:undefined});
+    handleSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            this.setState({ images: undefined, preview: undefined });
             return;
         }
         const numberOfFile = e.target.files.length;
         const files = e.target.files;
         var images = new FormData();
         var listFileName = [];
-        for(var i=0;i<numberOfFile;i++){
+        for (var i = 0; i < numberOfFile; i++) {
             const fileName = URL.createObjectURL(files[i]);
             listFileName.push(fileName);
-            images.append('ListPhoto',files[i],fileName);            
+            images.append('ListPhoto', files[i], fileName);
         }
-        this.setState({images:images, preview:listFileName});
+        this.setState({ images: images, preview: listFileName });
     }
     render() {
         return (
@@ -177,12 +182,12 @@ export class ComponentProductCreateFrom extends PureComponent {
                             <div className="col-md-12">
                                 <label for="inputName5" className="form-label">Hình ảnh từ internet</label>
                                 <input type="text" className="form-control" id="inputName5" name='hinh_anh' value={this.state.hinh_anh} onChange={this.handleChangeInput} required placeholder='Vd: https://cdn.tgdd.vn/Products/Images/44/253581/TimerThumb/macbook-pro-14-m1-pro-2021-8-core-cpu.jpg' />
-                                {this.state.hinh_anh?<img src={this.state.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img>:<></>}
+                                {this.state.hinh_anh ? <img src={this.state.hinh_anh} alt='Hinh anh san pham' style={{ height: '100px' }}></img> : <></>}
                             </div>
                             <div className="col-md-12">
                                 <label for="inputNumber" className=" col-form-label">Hình ảnh</label>
-                                <input className="form-control" type="file" id="formFile" name='uploadFile' onChange={this.handleSelectFile} multiple/>
-                                {this.state.preview && this.state.preview.map(url =><img src={url} alt='Hinh anh san pham' style={{ height: '100px',padding:'5px' }}></img>) }
+                                <input className="form-control" type="file" id="formFile" name='uploadFile' onChange={this.handleSelectFile} multiple />
+                                {this.state.preview && this.state.preview.map(url => <img src={url} alt='Hinh anh san pham' style={{ height: '100px', padding: '5px' }}></img>)}
                             </div>
                             <div className="col-md-12">
                                 <label for="inputName5" className="form-label">Tên sản phẩm</label>
@@ -266,9 +271,20 @@ export class ComponentProductCreateFrom extends PureComponent {
                                 <label for="inputEmail5" className="form-label">Màn hình</label>
                                 <input readOnly type="text" className="form-control" id="inputManHinh" name='manHinh' value={this.state.manHinh} required />
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-3">
                                 <label for="inputPassword5" className="form-label">PIN</label>
                                 <input type="text" className="form-control" id="inputPin" name='pin' value={this.state.pin} onChange={this.handleChangeInput} required />
+                            </div>
+                            <div className="col-md-3">
+                                <label for="inputState" className="form-label">Card</label>
+                                <select id="inputState" className="form-select" name='card' onChange={this.handleChangeScreen}>
+                                    <option value='-1' >Chọn Card...</option>
+                                    {this.state.cards.map((card) => {
+                                        if (String(this.state.card).includes(card))
+                                            return <option selected value={card}>{card}</option>
+                                        return <option value={card}>{card}</option>
+                                    })}
+                                </select>
                             </div>
                             <div className="col-md-6">
                                 <label for="inputState" className="form-label">CPU</label>
