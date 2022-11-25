@@ -95,7 +95,7 @@ export class ComponentSupplierList extends PureComponent {
               <tbody>
               { 
                     this.state.Supplierls.length!==0 ?
-                    this.state.Supplierls.map(Item=> <ComponentSupplierItem key={Item.id}  SupplierItem={Item}/>) :  <tr className="row m-3"><td>Danh sách trống.</td></tr>
+                    this.state.Supplierls.map(Item=> (Item.trangthai!==-2) ? <ComponentSupplierItem key={Item.id}  SupplierItem={Item}/>:"") :  <tr className="row m-3"><td>Danh sách trống.</td></tr>
                     
               }
               </tbody>

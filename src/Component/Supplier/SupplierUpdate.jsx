@@ -37,6 +37,30 @@ export class ComponentCustomerUpdate extends PureComponent {
         await this.updateSupplier();
         
     }
+    handleDelete= async e=>{
+        e.preventDefault();
+        try{
+            var  response = await SupplierApi.delete(this.state.id);
+            if(response.status===500){
+                this.setState({popup:{message:"Delete không thành công."}});
+            }
+         
+            if(response.status===200){
+                this.setState({
+                    popup:{
+                        message:"Success."
+                    }
+                });
+                //chuyen ve trang danh sach nhan vien
+                window.location.href=`/supplier`;
+
+            }
+        }catch(err){
+            console.log("delete supplier fail: "+err);
+            this.setState({popup:{message:"Delete thất bại.Vui lòng thử lại sau."}});
+           
+        }
+    } 
     async updateSupplier(){
         try {
             var  response = await SupplierApi.update({
@@ -128,9 +152,15 @@ export class ComponentCustomerUpdate extends PureComponent {
                                     <ItemInput nameInput="Website" name="Website" value={this.state.website} handleChangeInput={(e)=>this.handleChangeInputWebsite(e.target.value)}/>
                                 </div>
                         </div>
-                        <div className="text-center">
-                            <button type="button" className="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'150px'}} onClick={this.handleCreate}>Update</button>
-                        </div>
+                       
+                                <div className="text-center">
+                                    <button type="button" className="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'150px'}} onClick={this.handleCreate}>Update</button>
+                                </div>
+                  
+                                <div className="text-center">
+                                    <button type="button" className="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-danger"  style={{ height: '40px',width:'150px'}} onClick={this.handleDelete}>Delete</button>
+                                </div>
+                        
                     </form>
                     {(this.state.popup.message!=null)?<AlertDialog content={this.state.popup.message} handleRemoveMessage={this.handleRemoveMessage}/> : ""}
                 </div>
