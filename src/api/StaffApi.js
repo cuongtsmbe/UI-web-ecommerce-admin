@@ -8,12 +8,12 @@ class StaffApi {
         const url = LINK.ADMIN.STAFF_GET_LIST;
         return axiosAdmin.get(url,{params:condition.query});
     }
-
-    // // them nhan vien
-    // insertCustomer=(condition)=>{
-    //     const url = LINK.ADMIN.CUSTOMER_ADD;
-    //     return axiosAdmin.post(url,condition.query);
-    // }
+    // them nhan vien
+    insertStaff=(value)=>{
+        const url = LINK.ADMIN.STAFF_ADD;
+        console.log(value);
+        return axiosAdmin.post(url,value);
+    }
 
     GetDetailStaff=(condition) =>{
         const url = `/admin/staff/${condition.id}`;

@@ -46,13 +46,13 @@ export class ComponentCustomerUpdate extends PureComponent {
              
             }},this.state.id);
             console.log(response);
-            if(response.status==203){
+            if(response.status===203){
                 this.setState({popup:{message:"Tài khoản Email đã được sử dụng."}});
             }
-            if(response.status==201){
+            if(response.status===201){
                 this.setState({popup:{message:"Update thất bại. Cần xem nhập đầy đủ thông tin."}});
             }
-            if(response.status==200){
+            if(response.status===200){
                 this.setState({
                     popup:{
                         message:"Success."
