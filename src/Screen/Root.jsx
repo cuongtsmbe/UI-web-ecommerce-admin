@@ -12,6 +12,7 @@ import ScreenRegister from './Register'
 import ScreenCustomer from './Customer'
 import ScreenStaff from './Staff'
 import ScreenSupplier from './Suplier'
+import ScreenPhieuNhap from './PhieuNhap'
 class ScreenRoot extends Component {  
 
   render() {
@@ -38,6 +39,7 @@ class ScreenRoot extends Component {
         <Route path='/supplier' element={<ScreenSupplier namePage="SupplierShow"/>} />
         <Route path='/supplier/create' element={<ScreenSupplier namePage="SupplierCreate"/>} />
         <Route path='/supplier/edit/:idNCC' element={<ScreenSupplier namePage="SupplierUpdate"/>} />
+        <Route path='/phieunhap' element={<ScreenPhieuNhap namePage="phieunhapShow"/>} />
       </Routes> 
     )
   }

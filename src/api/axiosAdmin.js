@@ -43,7 +43,8 @@ axiosAdmin.interceptors.response.use(async (response) => {
 
   return response.data || response;
 }, async (err) => {
-  if (err.response.status === 400 || err.response.status === 401) {
+  if (err.response.status === 400) {
+    //get token
     const refreshResponse = await authApi.refreshToken({ user: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken') }) });
     // Save access token
     localStorage.setItem('token', refreshResponse.AccessToken);

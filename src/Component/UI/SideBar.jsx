@@ -54,47 +54,20 @@ export class ComponentUISideBar extends PureComponent {
                             <span>Nhà cung cấp</span>
                         </Link>
                     </li>
-                    {/* <!-- End F.A.Q Page Nav --> */}
-{/* 
+
                     <li className="nav-item">
-                        <Link className="nav-link collapsed" href="pages-contact.html">
+                        <Link className="nav-link collapsed" to="/phieunhap">
+                            <i class="bi bi-boxes"></i>
+                            <span>Phiếu nhập</span>
+                        </Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <Link className="nav-link collapsed" to="pages-contact.html">
                             <i className="bi bi-envelope"></i>
-                            <span>Contact</span>
+                            <span>Contact me</span>
                         </Link>
-                    </li> */}
-                    {/* <!-- End Contact Page Nav --> */}
-
-                    {/* <li className="nav-item">
-                        <Link className="nav-link collapsed" to="/register">
-                            <i className="bi bi-card-list"></i>
-                            <span>Register</span>
-                        </Link>
-                    </li> */}
-                    {/* <!-- End Register Page Nav --> */}
-
-                    {/* <li className="nav-item">
-                        <Link className="nav-link collapsed" to="/login">
-                            <i className="bi bi-box-arrow-in-right"></i>
-                            <span>Login</span>
-                        </Link>
-                    </li> */}
-                    {/* <!-- End Login Page Nav --> */}
-
-                    {/* <li className="nav-item">
-                        <Link className="nav-link collapsed" href="pages-error-404.html">
-                            <i className="bi bi-dash-circle"></i>
-                            <span>Error 404</span>
-                        </Link>
-                    </li> */}
-                    {/* <!-- End Error 404 Page Nav --> */}
-
-                    {/* <li className="nav-item">
-                        <Link className="nav-link collapsed" href="pages-blank.html">
-                            <i className="bi bi-file-earmark"></i>
-                            <span>Blank</span>
-                        </Link>
-                    </li> */}
-                    {/* <!-- End Blank Page Nav --> */}
+                    </li>
 
                 </ul>
 
