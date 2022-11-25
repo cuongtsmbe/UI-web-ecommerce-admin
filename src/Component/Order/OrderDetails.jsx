@@ -4,6 +4,7 @@ import ComponentProductItem from './ItemProductInOrder';
 import {formatVND} from '../../utils/currencyVND';
 import ComponentInfoCustomer from './InfoCustomerInDetails';
 import StatusDropDown from './StatusDropDown';
+import AlertDialog from '../UI/AlertDialog';
 
 export class ComponentOrderDetails extends PureComponent {
     state = {
@@ -11,6 +12,9 @@ export class ComponentOrderDetails extends PureComponent {
             Tong_tien:0,
             data:[],
             Trang_thai:-1,
+        },
+        popup:{
+            message:null
         }
     }
 
@@ -39,8 +43,15 @@ export class ComponentOrderDetails extends PureComponent {
             
             var  response = await orderApi.UpdateStatusOrderByID({query: {ID_HD:this.props.idHoadon},body:{Trang_thai:parseInt(this.state.detailsOrder.Trang_thai),message:""}});
             
-            console.log(response);
-            
+            if(response.status===202){
+                this.setState({popup:{message:"Không thể update trạng thái cho ID hóa đơn này ."}});
+            }
+            if(response.status===201){
+                this.setState({popup:{message:"Update không thành công ."}});
+            }
+            if(response.status===200){
+                this.setState({popup:{message:"Update thành công ."}});
+            }
         } catch (error) {
             console.log('Fail update status Orders : '+ error);
         }
@@ -49,6 +60,9 @@ export class ComponentOrderDetails extends PureComponent {
     //chỉ chạy 1 lần
     async componentDidMount(){
         await this.getDetailsOrder();
+    }
+    handleRemoveMessage=()=>{
+        this.setState({popup:{message:null}});
     }
   render() {
     
@@ -108,6 +122,8 @@ export class ComponentOrderDetails extends PureComponent {
           </div>
 
         </div>
+        {(this.state.popup.message!=null)?<AlertDialog content={this.state.popup.message} handleRemoveMessage={this.handleRemoveMessage}/> : ""}
+        
       </div>      
     )
   }
