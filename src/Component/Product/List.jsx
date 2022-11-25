@@ -7,13 +7,16 @@ import swal from 'sweetalert';
 export class ComponentProductList extends PureComponent {
   state = {
     products: [],
-    search: undefined
+    search: undefined,
+    totalPage: undefined,
+    currentPage: undefined
   }
   async getListProducts() {
     try {
-      const response = await productApi.get({ search: this.state.search });
+      const response = await productApi.get({ search: this.state.search, page: this.state.currentPage });
       const products = response.data;
-      this.setState({ products });
+      const page = response.TotalPage;
+      this.setState({ products: products, totalPage: page });
     } catch (error) {
       console.log('Fail to get list products' + error);
     }
@@ -22,7 +25,7 @@ export class ComponentProductList extends PureComponent {
     await this.getListProducts();
   }
   handleSearch = async e => {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value, currentPage: 1 })
     await this.getListProducts();
   }
   async handleDeleteProduct(id) {
@@ -51,6 +54,11 @@ export class ComponentProductList extends PureComponent {
   goToCreateProductPage = () => {
     window.location.href = '/products/create';
   }
+  handlePaging = async e => {
+    const currentPage = e.target.value;
+    await this.setState({ currentPage });
+    await this.getListProducts();
+  }
   render() {
     return (
       <div className="col-12">
@@ -74,12 +82,11 @@ export class ComponentProductList extends PureComponent {
             <div className='dataTable-top'>
               <div className="dataTable-dropdown">
                 <label>Trang
-                  <select className="dataTable-selector">
-                    <option value="5">5</option>
-                    <option value="10" selected="">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="25">25</option>
+                  <select className="dataTable-selector" onChange={this.handlePaging}>
+                    {Array.from({ length: this.state.totalPage }, (v, i) => i + 1).map((page) => {
+                      if (page === this.state.currentPage) return (<option value={page} selected>{ page }</option>)
+                      else return (<option value={page}>{ page }</option>)
+                    })}
                   </select>
                 </label>
               </div>
