@@ -1,6 +1,7 @@
 
 import React, { PureComponent } from 'react';
 import _ from 'lodash';
+import { Link } from 'react-router-dom'
 import phieunhapApi from '../../api/phieunhapApi'
 import StatusDropDown from "./StatusDropDown";
 import ComponentPhieuNhapItem from './ItemListPhieuNhap.jsx'
@@ -76,7 +77,9 @@ export class ComponentPhieuNhapList extends PureComponent {
                     <NativePickers NameTitle="End Time" stateName="enddate" parentCallback={this.handleSetTime} />
                 </div>
              
-              
+                <Link class="col-3 me-5 ms-3 d-flex align-items-center ps-5" to="/phieunhap/create"><button type="button" class="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'210px'}}>Thêm phiếu nhập</button></Link>
+
+               
             
             </div>
             <br/>
