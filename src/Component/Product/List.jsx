@@ -79,6 +79,7 @@ export class ComponentProductList extends PureComponent {
 
           <div className="card-body">
             <h5 className="card-title">Tất cả sản phẩm</h5>
+            
             <div className='dataTable-top'>
               <div className="dataTable-dropdown">
                 <label>Trang
@@ -99,12 +100,12 @@ export class ComponentProductList extends PureComponent {
             <table className="table table-borderless datatable">
               <thead>
                 <tr>
-                  <th scope="col" style={{ textAlign: 'center' }}>Mã sản phẩm</th>
-                  <th scope="col">Hình ảnh</th>
-                  <th scope="col" style={{ textAlign: 'center' }}>Tên sản phẩm</th>
-                  <th scope="col" style={{ textAlign: 'center' }}>Đơn giá</th>
-                  <th scope="col" style={{ textAlign: 'center' }}>Số lượng</th>
-                  <th scope='col' style={{ textAlign: 'center' }}><button className="btn btn-primary" onClick={this.goToCreateProductPage}>Tạo mới +</button></th>
+                  <th scope="col" style={{ textAlign: 'center', verticalAlign:'middle' }}>Mã sản phẩm</th>
+                  <th scope="col" style={{verticalAlign:'middle'}}>Hình ảnh</th>
+                  <th scope="col" style={{ textAlign: 'center', verticalAlign:'middle' }}>Tên sản phẩm</th>
+                  <th scope="col" style={{ textAlign: 'center', verticalAlign:'middle' }}>Đơn giá</th>
+                  <th scope="col" style={{ textAlign: 'center', verticalAlign:'middle' }}>Số lượng</th>
+                  <th scope='col' style={{ textAlign: 'center', verticalAlign:'middle' }}><button className="btn btn-primary" onClick={this.goToCreateProductPage}>Tạo mới +</button></th>
                 </tr>
               </thead>
               <tbody>

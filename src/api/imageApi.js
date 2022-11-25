@@ -8,7 +8,9 @@ class ImageApi {
     }
     add = (id, files) => {
         const url = `${LINK.ADMIN.UPLOAD_ADD_IMAGE}/${id}`;
-        return axiosAdmin.post(url, files);
+        return axiosAdmin.post(url, files, { headers: {
+            'Content-Type': 'multipart/form-data'
+        }});
     }
 }
 const imageApi = new ImageApi();

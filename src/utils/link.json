@@ -139,9 +139,9 @@
 
         "SUPPLIER_DELETE"  : "/admin/supplier/delete",
 
-        "UPLOAD_ADD_IMAGE" : "/admin/upload/add",
+        "UPLOAD_ADD_IMAGE" : "/admin/product/upload/add",
 
-        "UPLOAD_GET_BY_IDPRODUCT" : "/admin/upload/list/image"
+        "UPLOAD_GET_BY_IDPRODUCT" : "/admin/product/upload/list/image"
         
     }
     

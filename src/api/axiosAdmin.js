@@ -11,8 +11,7 @@ const axiosAdmin = axios.create({
   origin: true,
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    'Content-Type': 'application/json',
-    'Accept':'multipart/form-data'    
+    'Content-Type': 'application/json',     
   },
   withCredentials: true,
   paramsSerializer: params => queryString.stringify(params),
@@ -24,8 +23,7 @@ axiosAdmin.interceptors.request.use(async (config) => {
   const accessToken = localStorage.getItem('token');
   if (accessToken) {
     customHeaders.Authorization = 'Bearer ' + accessToken;
-  }
-
+  } 
   return {
     ...config,
     headers: {
