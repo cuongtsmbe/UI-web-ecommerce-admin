@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import productApi from '../../api/productApi';
 import ComponentProductItem from './Item';
-import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 
 export class ComponentProductList extends PureComponent {
