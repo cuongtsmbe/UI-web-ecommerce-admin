@@ -1,9 +1,7 @@
 
 import React, { PureComponent } from 'react';
-
 import _ from 'lodash';
 import phieunhapApi from '../../api/phieunhapApi'
-import { Link } from 'react-router-dom'
 import StatusDropDown from "./StatusDropDown";
 import ComponentPhieuNhapItem from './ItemListPhieuNhap.jsx'
 import NativePickers from './Date_time_picker'
@@ -77,43 +75,19 @@ export class ComponentPhieuNhapList extends PureComponent {
                 <div className="col">
                     <NativePickers NameTitle="End Time" stateName="enddate" parentCallback={this.handleSetTime} />
                 </div>
-
+             
               
             
             </div>
             <br/>
             <div className="row col-12">
             <div className="col-6">
-              
+                 <StatusDropDown nameCall="OrdersList" valueSelected={this.state.filter.trangthai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
+           
             </div>
             <div className="col-6">
-                <StatusDropDown nameCall="OrdersList" valueSelected={this.state.filter.trangthai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
+               </div>
             </div>
-            </div>
-
-            {/* <div className="row justify-content-start col-12">
-            
-                <div className="col">
-                <div className="row justify-content-start col-12 ">
-                    <div className="col ms-5">
-                        <StatusDropDown nameCall="OrderDetail" valueSelected={this.state.detailsOrder.Trang_thai} handleChangeSelected={(e)=>this.handleChangeSelectedStatus(e.target.value)}/>
-                    </div>
-                    <div className="col-1 me-4">
-                        <button type="button" className="btn btn-light text-primary border border border-primary" onClick={async ()=>{await this.handleUpdateStatusOrder()}}>Update</button>
-                    </div>
-                </div>
-                </div>  
-            
-                <div className="col-3 me-5 ms-3 d-flex align-items-center ps-5 badge bg-primary " style={{ height: '40px',width:'210px'}} >
-                        Số lượng nhà cung cấp :{this.state.countNoLimit} 
-                </div>
-               
-                <Link class="col-3 me-5 ms-3 d-flex align-items-center ps-5" to="/supplier/create"><button type="button" class="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'210px'}}>Thêm nhà cung cấp</button></Link>
-
-               
-            </div>
-            <br/>
-           */}
         </div>  
   
           <div className="card-body">
