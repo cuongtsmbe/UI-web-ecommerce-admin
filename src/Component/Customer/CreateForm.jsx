@@ -6,7 +6,7 @@ import branchApi from '../../api/branchApi';
 import suplierApi from '../../api/suplierApi';
 import imageApi from '../../api/imageApi';
 
-export class ComponentProductCreateFrom extends PureComponent {
+export class ComponentCustomerCreateForm extends PureComponent {
     state = {
         ten_sp: undefined,
         don_gia: undefined,
@@ -320,4 +320,4 @@ export class ComponentProductCreateFrom extends PureComponent {
     }
 }
 
-export default ComponentProductCreateFrom
+export default ComponentCustomerCreateForm

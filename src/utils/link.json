@@ -137,7 +137,11 @@
         
         "SUPPLIER_EDIT"  : "/admin/supplier/edit",
 
-        "SUPPLIER_DELETE"  : "/admin/supplier/delete"
+        "SUPPLIER_DELETE"  : "/admin/supplier/delete",
+
+        "UPLOAD_ADD_IMAGE" : "/admin/upload/add",
+
+        "UPLOAD_GET_BY_IDPRODUCT" : "/admin/upload/list/image"
         
     }
     

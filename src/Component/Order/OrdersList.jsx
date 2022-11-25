@@ -5,7 +5,7 @@ import SortDropDown from './SortDropDown';
 import NativePickers from './Date_time_picker';
 import StatusDropDown from './StatusDropDown';
 import _ from 'lodash';
-import SearchInput from './SearchInput';
+import SearchInput from '../UI/SearchInput';
 
 export class ComponentOrderList extends PureComponent {
     state = {
@@ -83,7 +83,7 @@ export class ComponentOrderList extends PureComponent {
                     <NativePickers NameTitle="End Time" stateName="enddate" parentCallback={this.handleSetTime} />
                 </div>
 
-                <SearchInput handleSearchInput={this.handleSearchInput} />
+                <SearchInput handleSearchInput={this.handleSearchInput} nameText="Tìm theo tên khách hàng ..."/>
                
             </div>
             <br/>

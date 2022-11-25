@@ -9,8 +9,8 @@ export default class SearchInput extends PureComponent {
                         <input 
                             type="text" 
                             className="form-control" 
-                            placeholder="Tim theo ten khach hang ..." 
-                            aria-label="Tim theo ten khach hang ..." 
+                            placeholder={this.props.nameText} 
+                            aria-label={this.props.nameText} 
                             name='tenkh'
                             onChange={this.props.handleSearchInput}
                         />
