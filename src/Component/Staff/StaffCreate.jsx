@@ -66,7 +66,7 @@ export class ComponentStaffCreate extends PureComponent {
                 this.setState({popup:{message:"Email exist"}});
             }
             if(response.status===208){
-                this.setState({popup:{message:"Password quá yêu."}});
+                this.setState({popup:{message:"Password quá yếu.(Cần ít nhất 8 kí tự . ít nhất 1 kí tự HOA và 2 kí tự số )"}});
             }
         } catch (error) {
             this.setState({popup:{message:"Lỗi trong quá trình try vấn.Xin hãy thử lại"}});

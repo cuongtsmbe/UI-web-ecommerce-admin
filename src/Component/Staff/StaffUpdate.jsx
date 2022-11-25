@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import ItemInput from './ItemInput'
 import staffApi from '../../api/StaffApi'
 import AlertDialog from '../UI/AlertDialog'
+import PermissionDropDown from './PermissionDropDown'
 export class ComponentCustomerUpdate extends PureComponent {
     state = {
         id:this.props.idStaff,
@@ -84,7 +85,12 @@ export class ComponentCustomerUpdate extends PureComponent {
         this.setState({popup:{message:null}});
     }
 
+    //handle dropdown select permission
+    handleChangeSelectedPermission=(value)=>{
+        this.setState({id_quyen:value});
+    }
     render() {
+        console.log("render update");
         return (
             <div className="col-lg-12">
                 <div className="card">
@@ -109,7 +115,12 @@ export class ComponentCustomerUpdate extends PureComponent {
                                         <ItemInput type="edit" nameInput="Email" name="email" value={this.state.email} handleChangeInput={(e)=>this.handleChangeInputEmail(e.target.value)}/>
                                     </div>
                             </div>
-                        
+                            <div className='col-12 row'>
+        
+                                    <div className="col-6">
+                                        <PermissionDropDown  value={this.state.id_quyen} handleChangeSelected={(e)=>this.handleChangeSelectedPermission(e.target.value)}/>
+                                    </div>
+                            </div>
                             <div className="text-center">
                                 <button type="button" className="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'150px'}} onClick={this.handleCreate}>Update</button>
                             </div>

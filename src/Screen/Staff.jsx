@@ -16,9 +16,9 @@ export class ScreenStaff extends PureComponent {
                             <li className="breadcrumb-item"><Link to="/dashboard">Home</Link></li>
                             <li className="breadcrumb-item">Pages</li>
                             {this.props.namePage==="staffShow"?<li className="breadcrumb-item active">Staff</li>:""}
-                            {this.props.namePage==="StaffCreate"?<li className="breadcrumb-item active">Create</li>:""}
-                            {this.props.namePage==="StaffUpdate"?<li className="breadcrumb-item active">Update</li>:""}
-                            {this.props.namePage==="StaffUpdate"?<li className="breadcrumb-item active">{this.props.params.idStaff}</li>:""}
+                            {this.props.namePage==="staffCreate"?<li className="breadcrumb-item active">Create</li>:""}
+                            {this.props.namePage==="staffUpdate"?<li className="breadcrumb-item active">Update</li>:""}
+                            {this.props.namePage==="staffUpdate"?<li className="breadcrumb-item active">{this.props.params.idStaff}</li>:""}
                         </ol>
                     </nav>
                 </div>

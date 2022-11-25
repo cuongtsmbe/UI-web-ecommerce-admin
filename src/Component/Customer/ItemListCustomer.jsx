@@ -9,7 +9,7 @@ export class ComponentCustomerItem extends PureComponent {
       // cho trang ds order chung
       return (
           <tr>
-              <td ><Link to={`/customers/details/${CustomerItem.Ma_kh}`}>#{CustomerItem.Ma_kh}</Link></td>
+              <td ><Link to={`/customer/edit/${CustomerItem.Ma_kh}`}>#{CustomerItem.Ma_kh}</Link></td>
               <td >{CustomerItem.ten_kh}</td>
               <td >{CustomerItem.ten_dangnhap}</td>          
               <td >{CustomerItem.email}</td>

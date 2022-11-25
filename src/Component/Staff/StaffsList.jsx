@@ -68,7 +68,7 @@ export class ComponentStaffList extends PureComponent {
                         Số lượng nhân viên :{this.state.countNoLimit} 
                 </div>
                
-                <Link class="col-3 me-5 ms-3 d-flex align-items-center ps-5" to="/staff/create"><button type="button" class="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'210px'}}>Thêm khách hàng</button></Link>
+                <Link class="col-3 me-5 ms-3 d-flex align-items-center ps-5" to="/staff/create"><button type="button" class="col-3 me-5 ms-3 d-flex align-items-center ps-5 btn btn-outline-primary"  style={{ height: '40px',width:'210px'}}>Thêm nhân viên</button></Link>
 
                
             </div>
@@ -87,7 +87,8 @@ export class ComponentStaffList extends PureComponent {
                   <th scope="col">Username </th>
                   <th scope="col">Email</th>
                   <th scope="col">Phone</th>
-                  <th scope="col">ngày tạo</th>
+                  <th scope="col">Quyền </th>
+                  <th scope="col">Ngày tạo</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
