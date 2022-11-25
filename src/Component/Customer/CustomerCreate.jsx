@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router-dom'
 import ItemInput from './ItemInput'
 import customerApi from '../../api/customerApi'
 import AlertDialog from '../UI/AlertDialog'

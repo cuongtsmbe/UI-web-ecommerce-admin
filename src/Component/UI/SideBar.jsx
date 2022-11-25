@@ -64,20 +64,20 @@ export class ComponentUISideBar extends PureComponent {
                     </li> */}
                     {/* <!-- End Contact Page Nav --> */}
 
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link className="nav-link collapsed" to="/register">
                             <i className="bi bi-card-list"></i>
                             <span>Register</span>
                         </Link>
-                    </li>
+                    </li> */}
                     {/* <!-- End Register Page Nav --> */}
 
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link className="nav-link collapsed" to="/login">
                             <i className="bi bi-box-arrow-in-right"></i>
                             <span>Login</span>
                         </Link>
-                    </li>
+                    </li> */}
                     {/* <!-- End Login Page Nav --> */}
 
                     {/* <li className="nav-item">
