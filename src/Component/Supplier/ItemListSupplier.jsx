@@ -13,7 +13,7 @@ export class ComponentSupplierItem extends PureComponent {
               <td >{Item.website}</td>
               <td >{Item.diachi}</td>
               <td >{Item.ngay_tao}</td>
-              <td ><Link to={`/supplier/edit/${Item.Ma_nhan_vien}`}><button type="button" class="btn btn-warning">Edit</button></Link></td>
+              <td ><Link to={`/supplier/edit/${Item.id}`}><button type="button" class="btn btn-warning">Edit</button></Link></td>
         </tr>
       );
     

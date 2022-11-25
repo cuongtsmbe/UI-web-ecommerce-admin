@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { withParams } from '../utils/Params/componentWithParams'
 import ComponentSupplierList from '../Component/Supplier/SupplierList'
 import ComponentSupplierCreate from '../Component/Supplier/SupplierCreate'
+import ComponentSupplierUpdate from '../Component/Supplier/SupplierUpdate'
 export class ScreenSupplier extends PureComponent {
     render() {
         return (
@@ -16,8 +17,8 @@ export class ScreenSupplier extends PureComponent {
                             <li className="breadcrumb-item">Pages</li>
                             {this.props.namePage==="SupplierShow"?<li className="breadcrumb-item active">Supplier</li>:""}
                             {this.props.namePage==="SupplierCreate"?<li className="breadcrumb-item active">Create</li>:""}
-                            {/* {this.props.namePage==="staffUpdate"?<li className="breadcrumb-item active">Update</li>:""}
-                            {this.props.namePage==="staffUpdate"?<li className="breadcrumb-item active">{this.props.params.idStaff}</li>:""} */}
+                            {this.props.namePage==="SupplierUpdate"?<li className="breadcrumb-item active">Update</li>:""}
+                            {this.props.namePage==="SupplierUpdate"?<li className="breadcrumb-item active">{this.props.params.idNCC}</li>:""}
                         </ol>
                     </nav>
                 </div>
@@ -29,7 +30,7 @@ export class ScreenSupplier extends PureComponent {
                       {/* <!-- show component by url --> */}
                       {this.props.namePage==="SupplierShow" ?   <ComponentSupplierList/> :""}
                       {this.props.namePage==="SupplierCreate"?  <ComponentSupplierCreate/>:""}
-                      {/* {this.props.namePage==="staffUpdate"?  <ComponentStaffUpdate idStaff={this.props.params.idStaff}/>:""} */}
+                      {this.props.namePage==="SupplierUpdate"?  <ComponentSupplierUpdate idNCC={this.props.params.idNCC}/>:""}
                     </div>
                 </section>
 

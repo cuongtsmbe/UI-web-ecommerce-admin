@@ -37,6 +37,7 @@ class ScreenRoot extends Component {
         <Route path='/staff/create' element={<ScreenStaff namePage="staffCreate"/>} />
         <Route path='/supplier' element={<ScreenSupplier namePage="SupplierShow"/>} />
         <Route path='/supplier/create' element={<ScreenSupplier namePage="SupplierCreate"/>} />
+        <Route path='/supplier/edit/:idNCC' element={<ScreenSupplier namePage="SupplierUpdate"/>} />
       </Routes> 
     )
   }

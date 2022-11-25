@@ -11,9 +11,13 @@ class SuplierApi {
         const url = LINK.ADMIN.SUPPLIER_ADD;
         return axiosAdmin.post(url,value);
     }
-    edit = (id, params) => {
+    getOne=(params) => {
+        const url = `/admin/supplier/one/${params.id}`;
+        return axiosAdmin.get(url);
+    }
+    update = (value,id) => {
         const url = `${LINK.ADMIN.SUPPLIER_EDIT}/${id}`;
-        return axiosAdmin.put(url, params);
+        return axiosAdmin.put(url, value);
     }
     delete=(id)=>{
         const url = `${LINK.ADMIN.SUPPLIER_DELETE}/${id}`;
