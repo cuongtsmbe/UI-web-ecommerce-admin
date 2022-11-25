@@ -6,9 +6,10 @@ class SuplierApi {
         const url = LINK.ADMIN.SUPPLIER_GET_LIST;
         return axiosAdmin.get(url, params);
     }
-    create = () => {
+    create = (value) => {
+        console.log(value);
         const url = LINK.ADMIN.SUPPLIER_ADD;
-        return axiosAdmin.post(url);
+        return axiosAdmin.post(url,value);
     }
     edit = (id, params) => {
         const url = `${LINK.ADMIN.SUPPLIER_EDIT}/${id}`;
