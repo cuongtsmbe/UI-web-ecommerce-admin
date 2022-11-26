@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import phieunhapApi from '../../api/phieunhapApi'
 import ItemInput from './ItemInput'
 import AlertDialog from '../UI/AlertDialog'
 import NCCDropDown from './nhacungcapDropdown'
@@ -10,13 +11,14 @@ export class ComponentPhieuNhapCreate extends PureComponent {
     state = {
         GiaNhap:'',
         popup:{
-            message:''
+            message:null
         },
         idncc:'',
         idnv:'',
         soluong:'',
         idsp:'',
-        dssanpham:[]
+        dssanpham:[],
+        TongTien:0
     }
     async componentDidMount() {
         
@@ -25,6 +27,44 @@ export class ComponentPhieuNhapCreate extends PureComponent {
         //2 object khác nhau thì true
         if(!_.isEqual(this.state.dssanpham, prevState.dssanpham)) {
             
+        }
+    }
+    async createPN(){
+        try{
+            var response=await phieunhapApi.create
+            ({
+                id_ncc:this.state.idncc,
+                id_nv:this.state.idnv,
+                Danh_sach_san_pham:JSON.stringify(this.state.dssanpham),
+                Tong_tien:this.state.TongTien,
+                Trang_thai:1,
+                Ghi_chu:"."
+                });
+            if(response.status===201){
+                this.setState({GiaNhap:'',soluong:'',idncc:'',idnv:'',idsp:'',dssanpham:[],TongTien:0, popup:{
+                    message:'Tạo phiếu nhập thành công.'
+                }});
+            }
+            if(response.status===502){
+                this.setState({GiaNhap:'',soluong:'',idsp:'', popup:{
+                    message:'Tạo phiếu nhập thất bại do thiếu thông tin.'
+                }});
+            }
+            if(response.status===501){
+                this.setState({GiaNhap:'',soluong:'',idsp:'', popup:{
+                    message:'Tạo phiếu nhập thất bại .Xem lại thông tin nhà cung cấp hoặc nhân viên tạo phiếu.'
+                }});
+            }
+            if(response.status===404){
+                this.setState({GiaNhap:'',soluong:'',idsp:'', popup:{
+                    message:`Những ID sản phẩm không tồn tại trong DB : ${response.ListIDProductNoExist}`
+                }});
+            }
+        }catch(err){
+            console.log("Create phieu nhap fail: "+err)
+            this.setState({popup:{
+                message:"Tạo phiếu nhập thất bại. "
+            }})
         }
     }
     handleCreate = async e => {
@@ -58,10 +98,9 @@ export class ComponentPhieuNhapCreate extends PureComponent {
             this.state.dssanpham.push({
                 id_san_pham:this.state.idsp,
                 Price:this.state.GiaNhap,
-                So_luong:this.state.soluong
+                So_luong:parseInt(this.state.soluong)
             });
-            
-            this.setState({GiaNhap:'',soluong:'',idncc:'',idnv:'',idsp:'',dssanpham:this.state.dssanpham});
+            this.setState({GiaNhap:'',soluong:'',idsp:'',dssanpham:this.state.dssanpham,TongTien:this.state.TongTien+parseInt(this.state.GiaNhap)*parseInt(this.state.soluong)});
         }
     }
     render() {
