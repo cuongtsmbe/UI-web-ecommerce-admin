@@ -1,4 +1,4 @@
-# Getting Started with Create React App branch "cuong"
+# Getting Started with Create React App (run branch "cuong")
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
